@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Button, Input, Select,Text } from "@chakra-ui/react";
 
 const AddTaskForm = ({ sprintId, onTaskAdded }) => {
   const [type, setType] = useState("");
@@ -32,11 +33,20 @@ const AddTaskForm = ({ sprintId, onTaskAdded }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Add Task</h2>
+    <form
+      onSubmit={handleSubmit}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: "1rem",
+      }}
+    >
+      <Text fontSize='4xl' >Add Task</Text>
       <div>
         <label htmlFor="type">Type:</label>
-        <input
+        <Input
+          width={"20vw"}
           type="text"
           id="type"
           value={type}
@@ -46,7 +56,8 @@ const AddTaskForm = ({ sprintId, onTaskAdded }) => {
       </div>
       <div>
         <label htmlFor="description">Description:</label>
-        <textarea
+        <Input
+          width={"20vw"}
           id="description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
@@ -55,7 +66,8 @@ const AddTaskForm = ({ sprintId, onTaskAdded }) => {
       </div>
       <div>
         <label htmlFor="assignee">Assignee:</label>
-        <input
+        <Input
+          width={"20vw"}
           type="text"
           id="assignee"
           value={assignee}
@@ -65,19 +77,23 @@ const AddTaskForm = ({ sprintId, onTaskAdded }) => {
       </div>
       <div>
         <label htmlFor="status">Status:</label>
-        <select
+        <Select
+          position={"center"}
+          width={"20vw"}
           id="status"
           value={status}
           onChange={(e) => setStatus(e.target.value)}
           required
         >
-          <option value="">-- Select Status --</option>
+          <option value="">Select Status</option>
           <option value="To do">To do</option>
           <option value="In progress">In progress</option>
           <option value="Done">Done</option>
-        </select>
+        </Select>
       </div>
-      <button type="submit">Add Task</button>
+      <Button width={"20vw"} type="submit">
+        Add Task
+      </Button>
     </form>
   );
 };
